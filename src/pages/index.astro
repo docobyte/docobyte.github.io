@@ -1,0 +1,98 @@
+---
+import MatrixBackground from '../components/MatrixBackground';
+import Projects from '../sections/Projects.astro';
+import TerminalSection from '../sections/TerminalSection.astro';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+  <MatrixBackground client:only="react" />
+
+  <!-- Navbar -->
+  <nav class="sticky top-0 z-50 border-b border-zinc-800/60 bg-black/70 backdrop-blur-md">
+    <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2 group">
+        <img src="/logo/icon.svg" alt="" class="w-8 h-8" />
+        <span class="font-mono text-xl font-bold tracking-tight text-white group-hover:text-brand-400 transition-colors">&lt;DOCOBYTE/&gt;</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8 font-mono text-sm">
+        <a href="#projects" class="text-zinc-400 hover:text-white transition-colors">Projects</a>
+        <a href="#terminal" class="text-zinc-400 hover:text-white transition-colors">AI Terminal</a>
+        <a href="#contact" class="text-zinc-400 hover:text-white transition-colors">Contact</a>
+        <a href="https://github.com/docobyte" target="_blank" rel="noopener" class="text-zinc-400 hover:text-brand-400 transition-colors">GitHub</a>
+      </div>
+      <button id="mobile-menu-btn" class="md:hidden text-zinc-300 hover:text-white" aria-label="Open menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden border-t border-zinc-800/60 bg-black/90 px-4 py-4 font-mono text-sm space-y-3">
+      <a href="#projects" class="block text-zinc-400 hover:text-white">Projects</a>
+      <a href="#terminal" class="block text-zinc-400 hover:text-white">AI Terminal</a>
+      <a href="#contact" class="block text-zinc-400 hover:text-white">Contact</a>
+      <a href="https://github.com/docobyte" target="_blank" rel="noopener" class="block text-zinc-400 hover:text-brand-400">GitHub</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="relative flex flex-col items-center justify-center min-h-[90vh] px-4 text-center">
+    <div class="max-w-4xl">
+      <p class="font-mono text-brand-400 text-sm mb-4 tracking-widest uppercase opacity-80">Startup Lab</p>
+      <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight text-white mb-6">
+        We Build <span class="cursor-blink" id="typewriter"></span>
+      </h1>
+      <p class="text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+        Minimal, fast, and scalable software. From AI agents to API services — engineered byte by byte.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#projects" class="px-6 py-3 rounded-md bg-brand-500 hover:bg-brand-600 text-black font-semibold font-mono transition-colors">
+          Explore Projects
+        </a>
+        <a href="#terminal" class="px-6 py-3 rounded-md border border-zinc-700 hover:border-brand-500 text-white font-mono transition-colors">
+          Open Terminal
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Projects />
+  <TerminalSection />
+
+  <!-- Footer -->
+  <footer id="contact" class="border-t border-zinc-900 bg-black mt-24">
+    <div class="max-w-6xl mx-auto px-4 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="font-mono text-sm text-zinc-500">
+        <span class="text-white">DOCOBYTE</span> &copy; <span id="year"></span>
+      </div>
+      <div class="flex items-center gap-6 font-mono text-sm">
+        <a href="mailto:hello@docobyte.dev" class="text-zinc-400 hover:text-brand-400 transition-colors">hello@docobyte.dev</a>
+        <a href="https://github.com/docobyte" target="_blank" rel="noopener" class="text-zinc-400 hover:text-brand-400 transition-colors">GitHub</a>
+        <a href="https://x.com/docobyte" target="_blank" rel="noopener" class="text-zinc-400 hover:text-brand-400 transition-colors">X</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Typewriter
+    const typeWords = ['Software', 'AI Agents', 'API Services', 'Websites'];
+    let typeIndex = 0, charIndex = 0, isDeleting = false;
+    const typeEl = document.getElementById('typewriter');
+    function typeLoop() {
+      const word = typeWords[typeIndex];
+      typeEl.textContent = isDeleting ? word.slice(0, charIndex - 1) : word.slice(0, charIndex + 1);
+      if (isDeleting) charIndex--; else charIndex++;
+      if (!isDeleting && charIndex === word.length) { isDeleting = true; setTimeout(typeLoop, 1600); }
+      else if (isDeleting && charIndex === 0) { isDeleting = false; typeIndex = (typeIndex + 1) % typeWords.length; setTimeout(typeLoop, 400); }
+      else { setTimeout(typeLoop, isDeleting ? 60 : 120); }
+    }
+    typeLoop();
+
+    // Mobile menu
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</Layout>
