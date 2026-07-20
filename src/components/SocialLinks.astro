@@ -1,0 +1,53 @@
+---
+import { Icon } from 'astro-icon/components';
+import { GITHUB_URL, X_URL, EMAIL, IG_URL, TIKTOK_URL, FB_URL } from '../constants';
+
+interface Props {
+  variant?: 'filled' | 'outline';
+}
+
+const { variant = 'outline' } = Astro.props;
+
+const base =
+  'inline-flex items-center gap-2 px-4 py-2 rounded-md font-mono text-sm font-medium transition-colors';
+
+const filled =
+  'bg-zinc-900 text-white hover:bg-zinc-800 border border-zinc-800 hover:border-brand-500';
+
+const outline =
+  'border border-zinc-700 text-zinc-300 hover:text-white hover:border-brand-500';
+
+const cls = variant === 'filled' ? `${base} ${filled}` : `${base} ${outline}`;
+---
+
+<div class="flex flex-wrap items-center justify-center gap-3">
+  <a href={GITHUB_URL} target="_blank" rel="noopener" class={cls}>
+    <Icon name="lucide:github" class="w-4 h-4" aria-hidden="true" />
+    <span>GitHub</span>
+  </a>
+
+  <a href={X_URL} target="_blank" rel="noopener" class={cls}>
+    <Icon name="simple-icons:x" class="w-4 h-4" aria-hidden="true" />
+    <span>X</span>
+  </a>
+
+  <a href={IG_URL} target="_blank" rel="noopener" class={cls}>
+    <Icon name="lucide:instagram" class="w-4 h-4" aria-hidden="true" />
+    <span>Instagram</span>
+  </a>
+
+  <a href={TIKTOK_URL} target="_blank" rel="noopener" class={cls}>
+    <Icon name="simple-icons:tiktok" class="w-4 h-4" aria-hidden="true" />
+    <span>TikTok</span>
+  </a>
+
+  <a href={FB_URL} target="_blank" rel="noopener" class={cls}>
+    <Icon name="lucide:facebook" class="w-4 h-4" aria-hidden="true" />
+    <span>Facebook</span>
+  </a>
+
+  <a href={`mailto:${EMAIL}`} class={cls}>
+    <Icon name="lucide:mail" class="w-4 h-4" aria-hidden="true" />
+    <span>Email</span>
+  </a>
+</div>

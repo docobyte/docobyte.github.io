@@ -1,8 +1,11 @@
 ---
+import { Icon } from 'astro-icon/components';
 import MatrixBackground from '../components/MatrixBackground';
+import SocialLinks from '../components/SocialLinks.astro';
 import Projects from '../sections/Projects.astro';
 import TerminalSection from '../sections/TerminalSection.astro';
 import Layout from '../layouts/Layout.astro';
+import { GITHUB_URL } from '../constants';
 ---
 
 <Layout>
@@ -19,7 +22,10 @@ import Layout from '../layouts/Layout.astro';
         <a href="#projects" class="text-zinc-400 hover:text-white transition-colors">Projects</a>
         <a href="#terminal" class="text-zinc-400 hover:text-white transition-colors">AI Terminal</a>
         <a href="#contact" class="text-zinc-400 hover:text-white transition-colors">Contact</a>
-        <a href="https://github.com/docobyte" target="_blank" rel="noopener" class="text-zinc-400 hover:text-brand-400 transition-colors">GitHub</a>
+        <a href={GITHUB_URL} target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-md border border-zinc-800 text-zinc-400 hover:text-white hover:border-brand-500 transition-colors">
+          <Icon name="lucide:github" class="w-4 h-4" aria-hidden="true" />
+          <span>GitHub</span>
+        </a>
       </div>
       <button id="mobile-menu-btn" class="md:hidden text-zinc-300 hover:text-white" aria-label="Open menu">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
@@ -29,7 +35,10 @@ import Layout from '../layouts/Layout.astro';
       <a href="#projects" class="block text-zinc-400 hover:text-white">Projects</a>
       <a href="#terminal" class="block text-zinc-400 hover:text-white">AI Terminal</a>
       <a href="#contact" class="block text-zinc-400 hover:text-white">Contact</a>
-      <a href="https://github.com/docobyte" target="_blank" rel="noopener" class="block text-zinc-400 hover:text-brand-400">GitHub</a>
+      <a href={GITHUB_URL} target="_blank" rel="noopener" class="flex items-center gap-2 text-zinc-400 hover:text-brand-400">
+        <Icon name="lucide:github" class="w-4 h-4" aria-hidden="true" />
+        GitHub
+      </a>
     </div>
   </nav>
 
@@ -59,15 +68,11 @@ import Layout from '../layouts/Layout.astro';
 
   <!-- Footer -->
   <footer id="contact" class="border-t border-zinc-900 bg-black mt-24">
-    <div class="max-w-6xl mx-auto px-4 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
-      <div class="font-mono text-sm text-zinc-500">
+    <div class="max-w-6xl mx-auto px-4 py-12 flex flex-col items-center gap-8">
+      <div class="font-mono text-sm text-zinc-500 text-center">
         <span class="text-white">DOCOBYTE</span> &copy; <span id="year"></span>
       </div>
-      <div class="flex items-center gap-6 font-mono text-sm">
-        <a href="mailto:hello@docobyte.dev" class="text-zinc-400 hover:text-brand-400 transition-colors">hello@docobyte.dev</a>
-        <a href="https://github.com/docobyte" target="_blank" rel="noopener" class="text-zinc-400 hover:text-brand-400 transition-colors">GitHub</a>
-        <a href="https://x.com/docobyte" target="_blank" rel="noopener" class="text-zinc-400 hover:text-brand-400 transition-colors">X</a>
-      </div>
+      <SocialLinks variant="filled" />
     </div>
   </footer>
 
