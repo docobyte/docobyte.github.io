@@ -90,15 +90,8 @@ export default function PixelGrid({
       if (!dots.length) return;
       const idx = Math.floor(Math.random() * dots.length);
       const { x, y } = dots[idx];
-      sparks.push({ x, y, brightness: 1 });
-      // 50% chance cascade to up to 3 neighbors
-      if (Math.random() < 0.5) {
-        const neighbors = dots.filter(d =>
-          Math.hypot(d.x - x, d.y - y) >= spacing - 1 &&
-          Math.hypot(d.x - x, d.y - y) <= spacing * 1.5
-        ).slice(0, 3);
-        for (const n of neighbors) sparks.push({ x: n.x, y: n.y, brightness: 0.6 });
-      }
+      const b = 0.3 + Math.random() * 0.7;
+      sparks.push({ x, y, brightness: b });
     };
 
     const render = () => {
