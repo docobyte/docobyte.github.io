@@ -57,7 +57,7 @@ export default function PixelGrid({
       canvas.style.height = `${height}px`;
 
       dots.length = 0;
-      pulses.length = 0;
+      sparks.length = 0;
       for (let x = spacing / 2; x < canvas.width; x += spacing) {
         for (let y = spacing / 2; y < canvas.height; y += spacing) {
           dots.push({ x, y, brightness: 0 });
@@ -83,44 +83,21 @@ export default function PixelGrid({
       mouse.y = -1000;
     };
 
-    interface PulseNode { x: number; y: number; }
-    interface Pulse {
-      nodes: PulseNode[];
-      segment: number;
-      progress: number;
-      speed: number;
-    }
-    const pulses: Pulse[] = [];
+    interface Spark { x: number; y: number; brightness: number; }
+    const sparks: Spark[] = [];
 
-    const pickNeighbor = (x: number, y: number) => {
-      const dirs = [
-        { dx: spacing, dy: 0 },
-        { dx: -spacing, dy: 0 },
-        { dx: 0, dy: spacing },
-        { dx: 0, dy: -spacing },
-      ];
-      const valid = dirs.filter(({ dx, dy }) => {
-        const nx = x + dx;
-        const ny = y + dy;
-        return nx >= spacing / 2 && nx <= canvas.width - spacing / 2 && ny >= spacing / 2 && ny <= canvas.height - spacing / 2;
-      });
-      if (!valid.length) return null;
-      const { dx, dy } = valid[Math.floor(Math.random() * valid.length)];
-      return { x: x + dx, y: y + dy };
-    };
-
-    const spawnPulse = () => {
+    const spawnSpark = () => {
       if (!dots.length) return;
-      const startIdx = Math.floor(Math.random() * dots.length);
-      const nodes: PulseNode[] = [{ x: dots[startIdx].x, y: dots[startIdx].y }];
-      const pathLength = 24 + Math.floor(Math.random() * 16);
-      for (let i = 0; i < pathLength; i++) {
-        const next = pickNeighbor(nodes[nodes.length - 1].x, nodes[nodes.length - 1].y);
-        if (!next) break;
-        nodes.push(next);
-      }
-      if (nodes.length > 1) {
-        pulses.push({ nodes, segment: 0, progress: 0, speed: 0.8 + Math.random() });
+      const idx = Math.floor(Math.random() * dots.length);
+      const { x, y } = dots[idx];
+      sparks.push({ x, y, brightness: 1 });
+      // 50% chance cascade to up to 3 neighbors
+      if (Math.random() < 0.5) {
+        const neighbors = dots.filter(d =>
+          Math.hypot(d.x - x, d.y - y) >= spacing - 1 &&
+          Math.hypot(d.x - x, d.y - y) <= spacing * 1.5
+        ).slice(0, 3);
+        for (const n of neighbors) sparks.push({ x: n.x, y: n.y, brightness: 0.6 });
       }
     };
 
@@ -142,37 +119,28 @@ export default function PixelGrid({
         ctx.fillRect(dot.x - dotSize / 2, dot.y - dotSize / 2, dotSize, dotSize);
       }
 
-      // Occasional traveling electron-like lines between nodes
-      if (pulses.length < 12 && Math.random() < 0.02) spawnPulse();
+      // Occasional pop sparks (blitz style)
+      if (sparks.length < 8 && Math.random() < 0.03) spawnSpark();
 
-      ctx.lineWidth = 2;
-      ctx.lineCap = 'round';
-      for (let i = pulses.length - 1; i >= 0; i--) {
-        const pulse = pulses[i];
-        pulse.progress += pulse.speed / spacing;
-        const start = pulse.nodes[pulse.segment];
-        const end = pulse.nodes[pulse.segment + 1];
-        const x = start.x + (end.x - start.x) * pulse.progress;
-        const y = start.y + (end.y - start.y) * pulse.progress;
+      for (let i = sparks.length - 1; i >= 0; i--) {
+        const spark = sparks[i];
+        const alpha = spark.brightness;
+        const r = dotSize * (1 + spark.brightness * 3);
 
+        // outer glow
+        ctx.fillStyle = hexToRgba(accentColor, alpha * 0.25);
         ctx.beginPath();
-        ctx.moveTo(start.x, start.y);
-        ctx.lineTo(x, y);
-        ctx.strokeStyle = hexToRgba(accentColor, 0.7);
-        ctx.stroke();
-
-        ctx.fillStyle = hexToRgba(accentColor, 1);
-        ctx.beginPath();
-        ctx.arc(x, y, dotSize * 1.5, 0, Math.PI * 2);
+        ctx.arc(spark.x, spark.y, r * 3, 0, Math.PI * 2);
         ctx.fill();
 
-        if (pulse.progress >= 1) {
-          pulse.segment++;
-          pulse.progress = 0;
-          if (pulse.segment >= pulse.nodes.length - 1) {
-            pulses.splice(i, 1);
-          }
-        }
+        // core
+        ctx.fillStyle = hexToRgba(accentColor, alpha);
+        ctx.beginPath();
+        ctx.arc(spark.x, spark.y, r * 1.2, 0, Math.PI * 2);
+        ctx.fill();
+
+        spark.brightness -= 0.02;
+        if (spark.brightness <= 0) sparks.splice(i, 1);
       }
 
       animationFrameId = requestAnimationFrame(render);
