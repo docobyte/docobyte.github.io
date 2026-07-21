@@ -94,21 +94,28 @@ export const PROJECTS = [
     name: 'docobyte-api',
     status: 'v1.0',
     description: 'Lightweight REST API gateway for AI agents and microservices.',
-    tags: ['Rust', 'OpenAPI'],
+    tags: ['API Gateway', 'Rust'],
   },
   {
     id: '02',
     name: 'sentinel-ai',
     status: 'beta',
     description: 'Autonomous agent that monitors logs and alerts with reasoning.',
-    tags: ['Python', 'LLM'],
+    tags: ['AI Agent', 'Monitoring'],
   },
   {
     id: '03',
     name: 'byteforms',
     status: 'alpha',
     description: 'Zero-backend form engine with spam-resistant submission handling.',
-    tags: ['TypeScript', 'Edge'],
+    tags: ['Form Engine', 'No-Code'],
+  },
+  {
+    id: '04',
+    name: 'bytetix',
+    status: 'concept',
+    description: 'Multi-event ticketing platform for Event Organizers — from fun runs and concerts to seminars.',
+    tags: ['Ticketing', 'SaaS', 'Multi-tenant'],
   },
 ] as const;
 
@@ -117,7 +124,7 @@ export const COMMANDS: Record<string, string> = {
   '--get-services': `
   Services offered by DOCOBYTE:\n  └─ Build: custom web, mobile, AI agents, internal tools\n  └─ Consult: architecture, strategy, roadmap\n  └─ Operate: server setup, CI/CD, deployment, maintenance\n  └─ Ship: MVPs and own products`,
   '--get-products': `
-  Our own products:\n  └─ docobyte-api: REST gateway for AI agents and microservices\n  └─ sentinel-ai: autonomous log monitoring agent\n  └─ byteforms: zero-backend form engine`,
+  Our own products:\n  └─ docobyte-api: REST gateway for AI agents and microservices\n  └─ sentinel-ai: autonomous log monitoring agent\n  └─ byteforms: zero-backend form engine\n  └─ bytetix: multi-event ticketing platform for EOs (concept)`,
   '--contact': `Email: hello@docobyte.dev\nGitHub: https://github.com/docobyte\nX: https://x.com/docobyte\nWhatsApp: https://wa.me/6285111336200`,
   '--about': `DOCOBYTE is a software house and startup lab.\nWe build, consult, operate, and ship — so your business keeps moving.`,
 };

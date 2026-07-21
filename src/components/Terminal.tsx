@@ -15,7 +15,7 @@ const PROMPTS = ['--help', '--get-services', '--get-products', '--contact', '--a
 const COMMANDS: Record<string, string> = {
   '--help': `Available commands:\n  --help              Show this message\n  --get-services      List services we offer\n  --get-products      Show our own products\n  --contact           Contact info\n  --about             About DOCOBYTE`,
   '--get-services': `Services offered by DOCOBYTE:\n  └─ Build: custom web, mobile, AI agents, internal tools\n  └─ Consult: architecture, strategy, roadmap\n  └─ Operate: server setup, CI/CD, deployment, maintenance\n  └─ Ship: MVPs and own products`,
-  '--get-products': `Our own products:\n  └─ docobyte-api: REST gateway for AI agents and microservices\n  └─ sentinel-ai: autonomous log monitoring agent\n  └─ byteforms: zero-backend form engine`,
+  '--get-products': `Our own products:\n  └─ docobyte-api: REST gateway for AI agents and microservices\n  └─ sentinel-ai: autonomous log monitoring agent\n  └─ byteforms: zero-backend form engine\n  └─ bytetix: multi-event ticketing platform for EOs (concept)`,
   '--contact': `Email: hello@docobyte.dev\nGitHub: ${GITHUB_URL}\nX: ${X_URL}\nInstagram: ${IG_URL}\nTikTok: ${TIKTOK_URL}\nFacebook: ${FB_URL}\nWhatsApp: ${WA_URL}`,
   '--about': `DOCOBYTE is a software house and startup lab.\nWe build, consult, operate, and ship — so your business keeps moving.`,
 };
