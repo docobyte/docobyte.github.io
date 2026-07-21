@@ -19,6 +19,19 @@ export const TYPEWRITER_WORDS = [
   'Websites',
   'Systems',
   'Products',
+  'Platforms',
+  'Microservices',
+  'Automations',
+  'Infrastructures',
+  'Dashboards',
+  'Outcomes',
+  'Databases',
+  'Cloud Architectures',
+  'SaaS Solutions',
+  'Integrations',
+  'Mobile Apps',
+  'Algorithms',
+  'Real-time Systems',
 ];
 
 export const HERO_MESSAGES = [
@@ -27,6 +40,18 @@ export const HERO_MESSAGES = [
   'AI agents, APIs, cloud infra—we speak fluent machine.',
   'From zero to deployed. Tell us what you need.',
   'Your next product, shipped. One conversation away.',
+  'Compile the future. We architect systems that scale.',
+  'Develop. Optimize. Create. We deliver the outcomes.',
+  'Optimized to the last byte. Engineered for maximum performance.',
+  'From the first commit to the final production deployment.',
+  'Clean syntax, solid architecture, flawless execution.',
+  'Stop debugging your ideas. Let us compile them into reality.',
+  'We write the code. You own the market.',
+  'Bridging the gap between abstract ideas and compiled realities.',
+  'Transforming raw requirements into high-performance solutions.',
+  'Your vision, our architecture. Deployed and ready to scale.',
+  'Automating workflows. Optimizing performance. Delivering results.',
+  'Full-stack expertise. End-to-end execution. Real outcomes.',
 ];
 
 export const SERVICES = [
