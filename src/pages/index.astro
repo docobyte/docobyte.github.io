@@ -52,11 +52,28 @@ import { TYPEWRITER_WORDS, HERO_MESSAGES } from '../data';
   </nav>
 
   <!-- Hero -->
-  <section id="hero" class="snap-section relative flex flex-col items-center justify-center px-4 text-center">
+  <section id="hero" class="hero-section snap-section relative flex flex-col items-center justify-center px-4 text-center bg-void-900/40 border-b-4 border-zinc-700/50 overflow-hidden">
+    <!-- Hero exclusive bg glow -->
+    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_45%,rgba(16,185,129,0.07)_0%,transparent_70%)] animate-[hero-glow-drift_12s_ease-in-out_infinite]" aria-hidden="true"></div>
+    <!-- Floating orbs -->
+    <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+      <div class="orb absolute -top-20 -left-10 w-72 h-72 rounded-full bg-brand-500/8 blur-[80px] animate-[hero-orb-a_18s_ease-in-out_infinite]"></div>
+      <div class="orb absolute -bottom-16 right-0 w-80 h-80 rounded-full bg-signal-500/8 blur-[100px] animate-[hero-orb-b_22s_ease-in-out_infinite]"></div>
+      <div class="orb absolute top-1/3 right-1/4 w-56 h-56 rounded-full bg-pulse-500/6 blur-[90px] animate-[hero-orb-c_16s_ease-in-out_infinite]"></div>
+    </div>
+    <!-- Grain overlay -->
+    <div class="pointer-events-none absolute inset-0 opacity-[0.035] mix-blend-overlay" aria-hidden="true" style="background-image: url(&quot;data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E&quot;); background-repeat: repeat; background-size: 200px 200px;"></div>
+    <!-- Vertical accent lines -->
+    <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+      <div class="absolute top-0 left-0 w-px h-64 bg-gradient-to-b from-brand-500/20 to-transparent"></div>
+      <div class="absolute top-0 right-0 w-px h-64 bg-gradient-to-b from-brand-500/20 to-transparent"></div>
+      <div class="absolute top-0 left-1/3 w-[1px] h-32 bg-gradient-to-b from-zinc-700/30 to-transparent"></div>
+      <div class="absolute top-0 right-1/3 w-[1px] h-32 bg-gradient-to-b from-zinc-700/30 to-transparent"></div>
+    </div>
     <div class="max-w-4xl">
-      <p class="font-mono text-brand-400 text-sm mb-4 tracking-widest uppercase opacity-80">Compile the Future</p>
+      <p class="font-mono text-brand-400 text-sm mb-4 tracking-widest uppercase opacity-80 hero-tagline">Compile the Future</p>
       <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight text-white mb-6">
-        We Build <span class="cursor-blink" id="typewriter"></span>
+        We Build <span class="cursor-blink font-light" id="typewriter"></span>
       </h1>
       <p class="hero-msg text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto mb-10 leading-relaxed min-h-[3.5rem] transition-opacity duration-500">
         {HERO_MESSAGES[0]}
@@ -106,6 +123,25 @@ import { TYPEWRITER_WORDS, HERO_MESSAGES } from '../data';
       }, 500);
     }
     setInterval(rotateMsg, 5000);
+
+    // Mouse parallax — orbs & rings follow cursor subtle
+    const hero = document.querySelector('.hero-section');
+    const orbs = hero.querySelectorAll('.orb');
+    const rings = hero.querySelector('.orbital-rings');
+    hero.addEventListener('mousemove', (e) => {
+      const rect = hero.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      orbs.forEach((orb, i) => {
+        const factor = 8 + i * 4;
+        orb.style.transform = `translate(${x * factor}px, ${y * factor}px)`;
+      });
+      if (rings) rings.style.transform = `translate(${x * 3}px, ${y * 3}px)`;
+    });
+    hero.addEventListener('mouseleave', () => {
+      orbs.forEach(orb => orb.style.transform = '');
+      if (rings) rings.style.transform = '';
+    });
 
     const mobileBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
