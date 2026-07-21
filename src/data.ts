@@ -24,28 +24,32 @@ export const TYPEWRITER_WORDS = [
 export const SERVICES = [
   {
     id: '01',
-    title: 'Build',
-    desc: 'Custom web apps, mobile apps, AI agents, and internal tools — built from first principles.',
+    title: 'Develop',
+    desc: 'Custom web apps, mobile apps, AI agents, and internal tools — built from first principles with the right technology.',
+    letter: 'D',
   },
   {
     id: '02',
-    title: 'Consult',
-    desc: 'Architecture review, tech strategy, and roadmap planning for teams that need clarity.',
+    title: 'Optimize',
+    desc: 'Architecture review, tech strategy, and roadmap planning — optimizing business processes through software.',
+    letter: 'O',
   },
   {
     id: '03',
-    title: 'Operate',
-    desc: 'Server setup, CI/CD, deployment, monitoring, and maintenance — byte by byte.',
+    title: 'Create',
+    desc: 'Server setup, CI/CD, deployment, monitoring — creating innovative digital products, byte by byte.',
+    letter: 'C',
   },
   {
     id: '04',
-    title: 'Ship',
-    desc: 'Own products and MVPs that prove ideas fast and scale when traction hits.',
+    title: 'Outcome',
+    desc: 'Own products and MVPs that prove ideas fast and scale when traction hits — focused on real results.',
+    letter: 'O',
   },
 ];
 
 export const WHY = [
-  'Full-stack, end-to-end delivery.',
+  'Full-stack, end-to-end delivery — every byte connected.',
   'Lean team, senior hands on every project.',
   'Own products alongside client work.',
   'Transparent pricing, no long-term lock-in.',
