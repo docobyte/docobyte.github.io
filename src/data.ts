@@ -15,10 +15,18 @@ export const PALETTE: PaletteColor[] = [
 export const TYPEWRITER_WORDS = [
   'Software',
   'AI Agents',
-  'API Services',
+  'APIs',
   'Websites',
-  'Serverless Systems',
-  'Cloud Infra',
+  'Systems',
+  'Products',
+];
+
+export const HERO_MESSAGES = [
+  'Got an idea? Let us turn it into code—byte by byte.',
+  'Full-service software house. You focus on business; we handle the bytes.',
+  'AI agents, APIs, cloud infra—we speak fluent machine.',
+  'From zero to deployed. Tell us what you need.',
+  'Your next product, shipped. One conversation away.',
 ];
 
 export const SERVICES = [

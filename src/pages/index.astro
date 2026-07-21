@@ -8,7 +8,7 @@ import Footer from '../sections/Footer.astro';
 import Layout from '../layouts/Layout.astro';
 import LogoHorizontal from '../components/LogoHorizontal.astro';
 import { GITHUB_URL } from '../constants';
-import { TYPEWRITER_WORDS } from '../data';
+import { TYPEWRITER_WORDS, HERO_MESSAGES } from '../data';
 ---
 
 <Layout
@@ -58,8 +58,8 @@ import { TYPEWRITER_WORDS } from '../data';
       <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight text-white mb-6">
         We Build <span class="cursor-blink" id="typewriter"></span>
       </h1>
-      <p class="text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-        Full-service software house for apps, AI agents, APIs, cloud infra, and server ops. You focus on the business; we handle the bytes.
+      <p class="hero-msg text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto mb-10 leading-relaxed min-h-[3.5rem] transition-opacity duration-500">
+        {HERO_MESSAGES[0]}
       </p>
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
         <a href="#services" class="px-6 py-3 rounded-md bg-brand-500 hover:bg-brand-600 text-black font-semibold font-mono transition-colors">
@@ -81,7 +81,7 @@ import { TYPEWRITER_WORDS } from '../data';
   <TerminalSection />
   <Footer />
 
-  <script define:vars={{ words: TYPEWRITER_WORDS }}>
+  <script define:vars={{ words: TYPEWRITER_WORDS, messages: HERO_MESSAGES }}>
     const typeEl = document.getElementById('typewriter');
     let typeIndex = 0, charIndex = 0, isDeleting = false;
 
@@ -94,6 +94,18 @@ import { TYPEWRITER_WORDS } from '../data';
       else { setTimeout(typeLoop, isDeleting ? 60 : 120); }
     }
     typeLoop();
+
+    const msgEl = document.querySelector('.hero-msg');
+    let msgIndex = 0;
+    function rotateMsg() {
+      msgIndex = (msgIndex + 1) % messages.length;
+      msgEl.style.opacity = '0';
+      setTimeout(() => {
+        msgEl.textContent = messages[msgIndex];
+        msgEl.style.opacity = '1';
+      }, 500);
+    }
+    setInterval(rotateMsg, 5000);
 
     const mobileBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
