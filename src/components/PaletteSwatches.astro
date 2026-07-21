@@ -1,5 +1,4 @@
 ---
-import { Icon } from 'astro-icon/components';
 import { PALETTE } from '../data';
 
 const palette = PALETTE.filter(c => c.name !== 'Void' && c.name !== 'White');
@@ -10,14 +9,14 @@ const palette = PALETTE.filter(c => c.name !== 'Void' && c.name !== 'White');
     <button
       type="button"
       data-palette={color.hex}
-      class="group flex items-center gap-3 text-left transition-transform hover:-translate-y-0.5"
+      class="group flex items-center gap-3 text-left transition-all hover:-translate-y-0.5"
       aria-label={`Set accent color to ${color.name} ${color.hex}`}
     >
       <span
-        class="w-10 h-10 rounded-md border border-white/10 shadow-sm"
+        class="block w-10 h-10 rounded-md border border-white/10 shadow-sm transition-all"
         style={`background-color: ${color.hex};`}
       />
-      <span class="font-mono text-xs text-zinc-400 group-hover:text-white">
+      <span class="font-mono text-xs text-zinc-400 transition-colors group-hover:text-white">
         <span class="block text-zinc-200 font-medium">{color.name}</span>
         <span class="uppercase">{color.hex}</span>
       </span>
@@ -25,13 +24,40 @@ const palette = PALETTE.filter(c => c.name !== 'Void' && c.name !== 'White');
   ))}
 </div>
 
+<style>
+  [data-selected] > span:first-child {
+    background-color: var(--color-brand-500) !important;
+    border-color: var(--color-brand-600);
+    box-shadow: 0 0 0 2px var(--color-brand-500);
+  }
+  [data-selected] .font-mono {
+    color: #fff;
+  }
+  [data-selected] .font-mono > span {
+    color: #fff;
+  }
+</style>
+
 <script>
   import { setPixelGridAccent } from '../components/PixelGrid';
+
+  const DEFAULT_ACCENT = '#10b981';
+
+  // Mark initial selected
+  document.querySelectorAll('[data-palette]').forEach(btn => {
+    const color = btn.getAttribute('data-palette');
+    if (color === DEFAULT_ACCENT) btn.dataset.selected = '';
+  });
 
   document.querySelectorAll('[data-palette]').forEach(btn => {
     btn.addEventListener('click', () => {
       const color = btn.getAttribute('data-palette');
-      if (color) setPixelGridAccent(color);
+      if (!color) return;
+
+      // Remove selected from all, add to clicked
+      document.querySelectorAll('[data-palette]').forEach(b => delete b.dataset.selected);
+      btn.dataset.selected = '';
+      setPixelGridAccent(color);
     });
   });
 </script>

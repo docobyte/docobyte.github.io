@@ -27,10 +27,15 @@ body {
   font-family: var(--font-sans);
 }
 
+::selection {
+  background: var(--color-brand-500);
+  color: #fff;
+}
+
 ::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: #09090b; }
-::-webkit-scrollbar-thumb { background: #27272a; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #3f3f46; }
+::-webkit-scrollbar-track { background: var(--color-void); }
+::-webkit-scrollbar-thumb { background: var(--color-brand-600); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-brand-500); }
 
 /* Snap sections - not footer */
 .snap-section {
