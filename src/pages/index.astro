@@ -6,6 +6,7 @@ import SocialLinks from '../components/SocialLinks.astro';
 import Projects from '../sections/Projects.astro';
 import TerminalSection from '../sections/TerminalSection.astro';
 import Layout from '../layouts/Layout.astro';
+import LogoHorizontal from '../components/LogoHorizontal.astro';
 import { GITHUB_URL, X_URL } from '../constants';
 ---
 
@@ -15,9 +16,8 @@ import { GITHUB_URL, X_URL } from '../constants';
   <!-- Navbar -->
   <nav class="sticky top-0 z-50 border-b border-zinc-800/60 bg-black/70 backdrop-blur-md">
     <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-      <a href="#" class="flex items-center gap-2 group">
-        <img src="/logo/icon.svg" alt="" class="w-8 h-8" />
-        <span class="font-logo text-xl font-bold tracking-tight text-white group-hover:text-brand-400 transition-colors">&lt;DOCOBYTE/&gt;</span>
+      <a href="#" class="flex items-center gap-2 group text-zinc-100 hover:text-brand-400 transition-colors">
+        <LogoHorizontal class="h-8 w-auto" />
       </a>
       <div class="hidden md:flex items-center gap-8 font-mono text-sm">
         <a href="#projects" class="text-zinc-400 hover:text-white transition-colors">Projects</a>
@@ -73,9 +73,8 @@ import { GITHUB_URL, X_URL } from '../constants';
       <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12 font-mono">
         <!-- Kolom 1 -->
         <div class="space-y-4">
-          <div class="flex items-center gap-2">
-            <img src="/logo/icon.svg" alt="" class="w-6 h-6" />
-            <span class="font-logo font-bold text-white tracking-tight text-lg">&lt;DOCOBYTE/&gt;</span>
+          <div class="flex items-center gap-2 text-zinc-100">
+            <LogoHorizontal class="h-6 w-auto" />
           </div>
           <p class="text-xs text-zinc-400 leading-relaxed font-sans">
             Minimal, fast, and scalable software. From AI agents to API services.
@@ -104,6 +103,7 @@ import { GITHUB_URL, X_URL } from '../constants';
             <li><a href={X_URL} target="_blank" rel="noopener" class="hover:text-brand-400 transition-colors">X (Twitter)</a></li>
             <li><a href="https://www.instagram.com/docobyte" target="_blank" rel="noopener" class="hover:text-brand-400 transition-colors">Instagram</a></li>
             <li><a href="https://www.tiktok.com/@docobyte" target="_blank" rel="noopener" class="hover:text-brand-400 transition-colors">TikTok</a></li>
+            <li><a href="https://www.facebook.com/profile.php?id=61591799471879" target="_blank" rel="noopener" class="hover:text-brand-400 transition-colors">Facebook</a></li>
           </ul>
         </div>
 
