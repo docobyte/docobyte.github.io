@@ -1,7 +1,42 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-export default function PixelGrid() {
+interface PixelGridProps {
+  /** Color used for the active cursor highlight. Defaults to brand green. */
+  accent?: string;
+  /** Dot size in px. */
+  dotSize?: number;
+  /** Spacing between dots in px. */
+  spacing?: number;
+  /** Radius around cursor that lights up dots. */
+  radius?: number;
+  /** Optional class for container sizing. */
+  className?: string;
+}
+
+export default function PixelGrid({
+  accent = '#10b981',
+  dotSize = 2,
+  spacing = 24,
+  radius = 80,
+  className = 'fixed inset-0 -z-10',
+}: PixelGridProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [accentColor, setAccentColor] = useState(accent);
+
+  // Allow external code to change the accent via a custom event.
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent<string | { color: string }>).detail;
+      const color = typeof detail === 'string' ? detail : detail?.color;
+      if (color) setAccentColor(color);
+    };
+    window.addEventListener('pixelgrid-accent', handler);
+    return () => window.removeEventListener('pixelgrid-accent', handler);
+  }, []);
+
+  useEffect(() => {
+    setAccentColor(accent);
+  }, [accent]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -11,19 +46,16 @@ export default function PixelGrid() {
 
     let animationFrameId: number;
     const dots: { x: number; y: number; brightness: number }[] = [];
-    const spacing = 16;
-    const dotSize = 2;
-    const mouse = { x: -100, y: -100 };
+    const mouse = { x: -1000, y: -1000 };
 
     const resize = () => {
-      // Fix size to match container to prevent blurring
-      const rect = canvas.parentElement?.getBoundingClientRect();
-      canvas.width = rect?.width || 300;
-      canvas.height = rect?.height || 150;
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width || window.innerWidth;
+      canvas.height = rect.height || window.innerHeight;
 
       dots.length = 0;
-      for (let x = 8; x < canvas.width; x += spacing) {
-        for (let y = 8; y < canvas.height; y += spacing) {
+      for (let x = spacing / 2; x < canvas.width; x += spacing) {
+        for (let y = spacing / 2; y < canvas.height; y += spacing) {
           dots.push({ x, y, brightness: 0 });
         }
       }
@@ -36,8 +68,8 @@ export default function PixelGrid() {
     };
 
     const handleMouseLeave = () => {
-      mouse.x = -100;
-      mouse.y = -100;
+      mouse.x = -1000;
+      mouse.y = -1000;
     };
 
     const render = () => {
@@ -47,14 +79,14 @@ export default function PixelGrid() {
         const dot = dots[i];
         const dist = Math.hypot(dot.x - mouse.x, dot.y - mouse.y);
 
-        if (dist < 60) {
-          dot.brightness = Math.max(dot.brightness, 1 - dist / 60);
+        if (dist < radius) {
+          dot.brightness = Math.max(dot.brightness, 1 - dist / radius);
         } else {
-          dot.brightness *= 0.94; // Decay
+          dot.brightness *= 0.96;
         }
 
-        // Base opacity is 0.15, peaks at 1.0 when brightness is high
-        ctx.fillStyle = `rgba(16, 185, 129, ${0.15 + dot.brightness * 0.85})`;
+        const alpha = 0.12 + dot.brightness * 0.88;
+        ctx.fillStyle = hexToRgba(accentColor, alpha);
         ctx.fillRect(dot.x - dotSize / 2, dot.y - dotSize / 2, dotSize, dotSize);
       }
 
@@ -63,24 +95,39 @@ export default function PixelGrid() {
 
     resize();
     window.addEventListener('resize', resize);
-    canvas.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove);
     canvas.addEventListener('mouseleave', handleMouseLeave);
 
     render();
 
     return () => {
       window.removeEventListener('resize', resize);
-      canvas.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mousemove', handleMouseMove);
       canvas.removeEventListener('mouseleave', handleMouseLeave);
       cancelAnimationFrame(animationFrameId);
     };
-  }, []);
+  }, [accentColor, dotSize, spacing, radius]);
 
   return (
     <canvas
       ref={canvasRef}
-      className="w-full h-full block border border-zinc-800 bg-zinc-950/40 rounded-md cursor-crosshair"
+      className={`${className} pointer-events-none`}
       aria-hidden="true"
     />
   );
+}
+
+function hexToRgba(hex: string, alpha: number) {
+  const sanitized = hex.replace('#', '');
+  const bigint = parseInt(sanitized.length === 3 ? sanitized.split('').map(c => c + c).join('') : sanitized, 16);
+  if (Number.isNaN(bigint)) return `rgba(16,185,129,${alpha})`;
+  const r = (bigint >> 16) & 255;
+  const g = (bigint >> 8) & 255;
+  const b = bigint & 255;
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+
+/** Convenience helper to broadcast a new accent color to all PixelGrid instances. */
+export function setPixelGridAccent(color: string) {
+  window.dispatchEvent(new CustomEvent('pixelgrid-accent', { detail: color }));
 }

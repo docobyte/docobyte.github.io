@@ -1,0 +1,26 @@
+---
+import SocialLinks from '../components/SocialLinks.astro';
+import PaletteSwatches from '../components/PaletteSwatches.astro';
+import LogoIcon from '../components/LogoIcon.astro';
+---
+
+<footer id="contact" class="border-t border-zinc-900 bg-black/80">
+  <div class="max-w-6xl mx-auto px-4 py-12 flex flex-col items-center text-center gap-8">
+    <LogoIcon class="h-12 w-auto text-white" />
+
+    <div class="flex flex-col items-center gap-3">
+      <h4 class="text-xs font-semibold text-white uppercase tracking-wider font-sans">Palette</h4>
+      <PaletteSwatches />
+    </div>
+
+    <SocialLinks variant="outline" />
+
+    <div class="font-mono text-xs text-zinc-600">
+      DOCOBYTE &copy; <span id="year"></span>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear().toString();
+  </script>
+</footer>

@@ -1,0 +1,37 @@
+---
+import { Icon } from 'astro-icon/components';
+import { PALETTE } from '../data';
+
+const palette = PALETTE.filter(c => c.name !== 'Void' && c.name !== 'White');
+---
+
+<div class="flex flex-wrap gap-4">
+  {palette.map(color => (
+    <button
+      type="button"
+      data-palette={color.hex}
+      class="group flex items-center gap-3 text-left transition-transform hover:-translate-y-0.5"
+      aria-label={`Set accent color to ${color.name} ${color.hex}`}
+    >
+      <span
+        class="w-10 h-10 rounded-md border border-white/10 shadow-sm"
+        style={`background-color: ${color.hex};`}
+      />
+      <span class="font-mono text-xs text-zinc-400 group-hover:text-white">
+        <span class="block text-zinc-200 font-medium">{color.name}</span>
+        <span class="uppercase">{color.hex}</span>
+      </span>
+    </button>
+  ))}
+</div>
+
+<script>
+  import { setPixelGridAccent } from '../components/PixelGrid';
+
+  document.querySelectorAll('[data-palette]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const color = btn.getAttribute('data-palette');
+      if (color) setPixelGridAccent(color);
+    });
+  });
+</script>
