@@ -118,6 +118,6 @@ export const COMMANDS: Record<string, string> = {
   Services offered by DOCOBYTE:\n  └─ Build: custom web, mobile, AI agents, internal tools\n  └─ Consult: architecture, strategy, roadmap\n  └─ Operate: server setup, CI/CD, deployment, maintenance\n  └─ Ship: MVPs and own products`,
   '--get-products': `
   Our own products:\n  └─ docobyte-api: REST gateway for AI agents and microservices\n  └─ sentinel-ai: autonomous log monitoring agent\n  └─ byteforms: zero-backend form engine`,
-  '--contact': `Email: hello@docobyte.dev\nGitHub: https://github.com/docobyte\nX: https://x.com/docobyte`,
+  '--contact': `Email: hello@docobyte.dev\nGitHub: https://github.com/docobyte\nX: https://x.com/docobyte\nWhatsApp: https://wa.me/6285111336200`,
   '--about': `DOCOBYTE is a software house and startup lab.\nWe build, consult, operate, and ship — so your business keeps moving.`,
 };

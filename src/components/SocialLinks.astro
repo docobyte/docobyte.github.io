@@ -1,6 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
-import { GITHUB_URL, X_URL, EMAIL, IG_URL, TIKTOK_URL, FB_URL } from '../constants';
+import { GITHUB_URL, X_URL, EMAIL, IG_URL, TIKTOK_URL, FB_URL, WA_URL } from '../constants';
 
 interface Props {
   variant?: 'filled' | 'outline';
@@ -44,6 +44,11 @@ const cls = variant === 'filled' ? `${base} ${filled}` : `${base} ${outline}`;
   <a href={FB_URL} target="_blank" rel="noopener" class={cls}>
     <Icon name="lucide:facebook" class="w-4 h-4" aria-hidden="true" />
     <span>Facebook</span>
+  </a>
+
+  <a href={WA_URL} target="_blank" rel="noopener" class={cls}>
+    <Icon name="simple-icons:whatsapp" class="w-4 h-4" aria-hidden="true" />
+    <span>WhatsApp</span>
   </a>
 
   <a href={`mailto:${EMAIL}`} class={cls}>
