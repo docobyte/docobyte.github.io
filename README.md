@@ -1,43 +1,37 @@
-# Astro Starter Kit: Minimal
+# DocoByte Website
 
-```sh
-pnpm create astro@latest -- --template minimal
-```
+**Compile the Future** — Software Development · AI · Cloud · Digital Solutions
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+DocoByte is software development and digital solutions company. Built with [Astro](https://astro.build).
 
-## 🚀 Project Structure
+## Brand
 
-Inside of your Astro project, you'll see the following folders and files:
+| Letter | Meaning |
+|--------|---------|
+| **D** | Develop — Build solutions with proper technology |
+| **O** | Optimize — Optimize business processes through software |
+| **C** | Create — Create innovative digital products |
+| **O** | Outcome — Focus on real results and client impact |
+| **Byte** | Every digital solution is made of small interconnected pieces — like bytes in a computer |
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+## Tech Stack
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+- **Framework:** [Astro](https://astro.build)
+- **UI:** React + TypeScript
+- **Styling:** Tailwind CSS v4, lucide icons
+- **Deploy:** GitHub Pages
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Commands
 
-Any static assets, like images, can be placed in the `public/` directory.
+| Command | Action |
+| :------ | :----- |
+| `pnpm install` | Install dependencies |
+| `pnpm dev` | Start dev server at `localhost:4321` |
+| `pnpm build` | Build production site to `./dist/` |
+| `pnpm preview` | Preview production build locally |
+| `pnpm astro` | Run Astro CLI commands |
 
-## 🧞 Commands
+## Deployment
 
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Push to `main` — GitHub Actions deploys to GitHub Pages.
+Domain: [docobyte.com](https://docobyte.com)
