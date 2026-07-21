@@ -1,7 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
 import PixelGrid from '../components/PixelGrid';
-import MatrixBackground from '../components/MatrixBackground';
 import Projects from '../sections/Projects.astro';
 import Services from '../sections/Services.astro';
 import TerminalSection from '../sections/TerminalSection.astro';
@@ -17,7 +16,6 @@ import { TYPEWRITER_WORDS } from '../data';
   description="DOCOBYTE is a software house and startup lab. We build, consult, operate, and ship software so your business keeps moving."
 >
   <PixelGrid client:only="react" />
-  <MatrixBackground client:only="react" />
 
   <!-- Navbar -->
   <nav class="fixed top-0 left-0 right-0 z-50 border-b border-zinc-800/60 bg-black/70 backdrop-blur-md">
@@ -73,9 +71,9 @@ import { TYPEWRITER_WORDS } from '../data';
       </div>
     </div>
 
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-zinc-600 animate-bounce">
+    <a href="#services" aria-label="Scroll to services" class="absolute bottom-8 left-1/2 -translate-x-1/2 text-zinc-600 hover:text-brand-400 transition-colors animate-bounce cursor-pointer">
       <Icon name="lucide:chevron-down" class="w-6 h-6" aria-hidden="true" />
-    </div>
+    </a>
   </section>
 
   <Services />

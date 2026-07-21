@@ -44,9 +44,10 @@ footer {
 }
 
 .cursor-blink::after {
-  content: '▋';
+  content: '▏';
   color: var(--color-brand-500);
   animation: blink 1s step-start infinite;
+  font-weight: 300;
 }
 
 @keyframes blink { 50% { opacity: 0; } }
