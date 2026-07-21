@@ -113,14 +113,14 @@ export default function PixelGrid({
       if (!dots.length) return;
       const startIdx = Math.floor(Math.random() * dots.length);
       const nodes: PulseNode[] = [{ x: dots[startIdx].x, y: dots[startIdx].y }];
-      const pathLength = 12 + Math.floor(Math.random() * 12);
+      const pathLength = 24 + Math.floor(Math.random() * 16);
       for (let i = 0; i < pathLength; i++) {
         const next = pickNeighbor(nodes[nodes.length - 1].x, nodes[nodes.length - 1].y);
         if (!next) break;
         nodes.push(next);
       }
       if (nodes.length > 1) {
-        pulses.push({ nodes, segment: 0, progress: 0, speed: 1 + Math.random() * 1.5 });
+        pulses.push({ nodes, segment: 0, progress: 0, speed: 0.8 + Math.random() });
       }
     };
 
@@ -143,7 +143,7 @@ export default function PixelGrid({
       }
 
       // Occasional traveling electron-like lines between nodes
-      if (pulses.length < 5 && Math.random() < 0.008) spawnPulse();
+      if (pulses.length < 12 && Math.random() < 0.02) spawnPulse();
 
       ctx.lineWidth = 2;
       ctx.lineCap = 'round';
