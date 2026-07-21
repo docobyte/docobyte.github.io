@@ -18,8 +18,6 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
-  overflow-y: auto;
 }
 
 body {
@@ -37,18 +35,8 @@ body {
 ::-webkit-scrollbar-thumb { background: var(--color-brand-600); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--color-brand-500); }
 
-/* Snap sections - not footer */
 .snap-section {
   min-height: 100dvh;
-  scroll-snap-align: start;
-}
-
-footer {
-  scroll-snap-align: end;
-}
-
-@media (hover: none) and (pointer: coarse) {
-  html { scroll-snap-type: none; }
 }
 
 .cursor-blink::after {
@@ -114,6 +102,6 @@ footer {
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; scroll-snap-type: none; }
+  html { scroll-behavior: auto; }
   .cursor-blink::after { animation: none; }
 }
