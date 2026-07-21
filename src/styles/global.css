@@ -41,11 +41,14 @@ body {
 .snap-section {
   min-height: 100dvh;
   scroll-snap-align: start;
-  scroll-snap-stop: always;
 }
 
 footer {
   scroll-snap-align: end;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  html { scroll-snap-type: none; }
 }
 
 .cursor-blink::after {
