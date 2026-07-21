@@ -16,10 +16,10 @@ import { SERVICES, WHY } from '../data';
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
       {SERVICES.map(service => (
-        <article class="group p-6 rounded-xl border border-zinc-800 bg-zinc-950/50 glow-border relative overflow-hidden">
+        <article class="group p-6 rounded-xl border border-zinc-800 bg-zinc-950/80 glow-border relative overflow-hidden">
           <div class="absolute -top-3 -right-3 p-3 text-[100px] font-mono font-black text-zinc-800/20 select-none leading-none tracking-widest">{service.letter}</div>
           <div class="flex items-start justify-between mb-4 relative z-10">
-            <div class="w-10 h-10 rounded-lg bg-brand-500/10 flex items-center justify-center text-brand-400 font-mono font-bold">
+            <div class="w-10 h-10 rounded-lg bg-brand-500/20 flex items-center justify-center text-brand-400 font-mono font-bold">
               {service.letter}
             </div>
             <Icon name="lucide:arrow-up-right" class="w-5 h-5 text-zinc-600 group-hover:text-brand-400 transition-colors" />
@@ -30,7 +30,7 @@ import { SERVICES, WHY } from '../data';
       ))}
     </div>
 
-    <div class="rounded-2xl border border-zinc-800 bg-zinc-950/40 p-8 md:p-10">
+    <div class="rounded-2xl border border-zinc-800 bg-zinc-950/80 p-8 md:p-10">
       <h3 class="text-lg font-semibold text-white mb-6">Why DOCOBYTE?</h3>
       <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
         {WHY.map(item => (
