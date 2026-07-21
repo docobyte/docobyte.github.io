@@ -12,7 +12,8 @@ import { PROJECTS } from '../data';
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {PROJECTS.map(project => (
-        <article class="group p-6 rounded-xl border border-zinc-800 bg-zinc-950/80 glow-border">
+        <a href={project.url || '#'} target={project.url ? '_blank' : undefined} rel={project.url ? 'noopener noreferrer' : undefined} class="block group no-underline">
+        <article class="p-6 rounded-xl border border-zinc-800 bg-zinc-950/80 glow-border group-hover:border-brand-500/50 transition-colors">
           <div class="flex items-center justify-between mb-4">
             <div class="w-10 h-10 rounded-lg bg-brand-500/20 flex items-center justify-center text-brand-400 font-mono font-bold">
               {project.id}
@@ -27,6 +28,7 @@ import { PROJECTS } from '../data';
             ))}
           </div>
         </article>
+        </a>
       ))}
     </div>
   </div>
