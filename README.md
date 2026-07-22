@@ -1,4 +1,4 @@
-# 🌐 DocoByte Website
+# DocoByte Website
 
 <p align="center">
   <strong>Compile the Future</strong> — Software Development · AI · Cloud · Digital Solutions
@@ -13,9 +13,9 @@
 
 ---
 
-**DocoByte** is a software development and digital solutions company. This repository houses the source code for our official website, built with [Astro](https://astro.build) for blazing-fast performance.
+DocoByte is a software development and digital solutions company. This repository houses the source code for the official website, built with [Astro](https://astro.build) for optimal performance.
 
-## 🚀 Brand Philosophy
+## Brand Philosophy
 
 | Letter | Concept | Description |
 | :---: | :--- | :--- |
@@ -27,7 +27,7 @@
 
 ---
 
-## 🛠️ Tech Stack & Tools
+## Tech Stack & Tools
 
 * **Framework:** [Astro v7](https://astro.build) (SSG / Static Site Generation)
 * **UI Library:** [React v19](https://react.dev) with TypeScript
@@ -37,17 +37,17 @@
 
 ---
 
-## 💻 Getting Started
+## Getting Started
 
 ### Prerequisites
 
-Ensure you have the following installed on your local machine:
+Ensure the following are installed on the local development machine:
 * [Node.js](https://nodejs.org/) (`>= 22.12.0`)
 * [pnpm](https://pnpm.io/) package manager
 
 ### Installation
 
-1. Clone this repository to your local machine:
+1. Clone this repository to the local machine:
    ```bash
    git clone git@github.com:docobyte/docobyte.github.io.git
    cd docobyte.github.io
@@ -70,15 +70,15 @@ Ensure you have the following installed on your local machine:
 
 ---
 
-## 📦 Deployment Workflow
+## Deployment Workflow
 
 We use a Git-based deployment workflow. 
-1. Any code changes pushed or merged into the `main` branch will automatically trigger a **GitHub Actions** workflow.
-2. The workflow compiles the site and deploys the static files to **GitHub Pages**.
-3. The site is served live at **[docobyte.com](https://docobyte.com)**.
+1. Any code changes pushed or merged into the `main` branch automatically trigger a GitHub Actions workflow.
+2. The workflow compiles the site and deploys the static files to GitHub Pages.
+3. The site is served live at [docobyte.com](https://docobyte.com).
 
 ---
 
 <p align="center">
-  Made with ❤️ by the DocoByte Team
+  DocoByte Team
 </p>
