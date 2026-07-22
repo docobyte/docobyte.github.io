@@ -3,20 +3,15 @@ import LogoIcon from './LogoIcon.astro';
 
 interface Props {
   class?: string;
-  showTagline?: boolean;
 }
-const { class: className, showTagline = true } = Astro.props;
+const { class: className } = Astro.props;
 ---
 <div class={`flex items-center gap-3 ${className || ''}`}>
-  <LogoIcon class="h-9 w-auto text-brand-400 shrink-0" />
+  <LogoIcon class="h-9 w-auto text-white shrink-0" />
   <div class="flex flex-col justify-center leading-none">
     <div class="font-logo text-xl tracking-wide select-none">
       <span class="font-extrabold text-white">DOCO</span><span class="font-light text-zinc-400">BYTE</span>
     </div>
-    {showTagline && (
-      <div class="font-sans text-[8px] tracking-[0.18em] text-zinc-500 uppercase select-none mt-1">
-        Byte-Scale Engineering
-      </div>
-    )}
   </div>
 </div>
+
