@@ -1,37 +1,84 @@
-# DocoByte Website
+# 🌐 DocoByte Website
 
-**Compile the Future** — Software Development · AI · Cloud · Digital Solutions
+<p align="center">
+  <strong>Compile the Future</strong> — Software Development · AI · Cloud · Digital Solutions
+</p>
 
-DocoByte is software development and digital solutions company. Built with [Astro](https://astro.build).
+<p align="center">
+  <a href="https://docobyte.com"><img src="https://img.shields.io/badge/Website-docobyte.com-0052FF?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Website"></a>
+  <a href="https://astro.build"><img src="https://img.shields.io/badge/Astro-v7.1-FF5D01?style=for-the-badge&logo=astro&logoColor=white" alt="Astro"></a>
+  <a href="https://react.dev"><img src="https://img.shields.io/badge/React-v19-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React"></a>
+  <a href="https://tailwindcss.com"><img src="https://img.shields.io/badge/Tailwind%20CSS-v4-38DFD8?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="TailwindCSS"></a>
+</p>
 
-## Brand
+---
 
-| Letter | Meaning |
-|--------|---------|
-| **D** | Develop — Build solutions with proper technology |
-| **O** | Optimize — Optimize business processes through software |
-| **C** | Create — Create innovative digital products |
-| **O** | Outcome — Focus on real results and client impact |
-| **Byte** | Every digital solution is made of small interconnected pieces — like bytes in a computer |
+**DocoByte** is a software development and digital solutions company. This repository houses the source code for our official website, built with [Astro](https://astro.build) for blazing-fast performance.
 
-## Tech Stack
+## 🚀 Brand Philosophy
 
-- **Framework:** [Astro](https://astro.build)
-- **UI:** React + TypeScript
-- **Styling:** Tailwind CSS v4, lucide icons
-- **Deploy:** GitHub Pages
+| Letter | Concept | Description |
+| :---: | :--- | :--- |
+| **D** | **Develop** | Build robust, scalable solutions using modern, cutting-edge technology. |
+| **O** | **Optimize** | Streamline and automate complex business processes through efficient software. |
+| **C** | **Create** | Craft innovative digital products that solve real-world problems. |
+| **O** | **Outcome** | Maintain a laser-focus on high-quality results and real client impact. |
+| **Byte** | **Micro-details** | Every grand digital solution is composed of tiny, interconnected bytes. |
 
-## Commands
+---
+
+## 🛠️ Tech Stack & Tools
+
+* **Framework:** [Astro v7](https://astro.build) (SSG / Static Site Generation)
+* **UI Library:** [React v19](https://react.dev) with TypeScript
+* **Styling:** [Tailwind CSS v4](https://tailwindcss.com) & Vite integration
+* **Icons:** [Lucide Astro](https://lucide.dev) & Iconify
+* **Deployment:** GitHub Pages (automated via GitHub Actions)
+
+---
+
+## 💻 Getting Started
+
+### Prerequisites
+
+Ensure you have the following installed on your local machine:
+* [Node.js](https://nodejs.org/) (`>= 22.12.0`)
+* [pnpm](https://pnpm.io/) package manager
+
+### Installation
+
+1. Clone this repository to your local machine:
+   ```bash
+   git clone git@github.com:docobyte/docobyte.github.io.git
+   cd docobyte.github.io
+   ```
+
+2. Install dependencies:
+   ```bash
+   pnpm install
+   ```
+
+### Local Development Commands
 
 | Command | Action |
-| :------ | :----- |
-| `pnpm install` | Install dependencies |
-| `pnpm dev` | Start dev server at `localhost:4321` |
-| `pnpm build` | Build production site to `./dist/` |
-| `pnpm preview` | Preview production build locally |
-| `pnpm astro` | Run Astro CLI commands |
+| :--- | :--- |
+| `pnpm dev` | Starts the Astro development server at `http://localhost:4321` |
+| `pnpm build` | Builds the static production site into the `./dist` folder |
+| `pnpm preview` | Previews the locally built production site |
+| `pnpm stop` | Stops the running Astro development server |
+| `pnpm astro` | Runs arbitrary Astro CLI commands |
 
-## Deployment
+---
 
-Push to `main` — GitHub Actions deploys to GitHub Pages.
-Domain: [docobyte.com](https://docobyte.com)
+## 📦 Deployment Workflow
+
+We use a Git-based deployment workflow. 
+1. Any code changes pushed or merged into the `main` branch will automatically trigger a **GitHub Actions** workflow.
+2. The workflow compiles the site and deploys the static files to **GitHub Pages**.
+3. The site is served live at **[docobyte.com](https://docobyte.com)**.
+
+---
+
+<p align="center">
+  Made with ❤️ by the DocoByte Team
+</p>
