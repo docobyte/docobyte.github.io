@@ -25,6 +25,10 @@ body {
   font-family: var(--font-sans);
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-logo);
+}
+
 ::selection {
   background: var(--color-brand-500);
   color: #fff;

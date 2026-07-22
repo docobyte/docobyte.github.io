@@ -7,6 +7,7 @@ import TerminalSection from '../sections/TerminalSection.astro';
 import Footer from '../sections/Footer.astro';
 import Layout from '../layouts/Layout.astro';
 import LogoHorizontal from '../components/LogoHorizontal.astro';
+import LogoIcon from '../components/LogoIcon.astro';
 import { GITHUB_URL } from '../constants';
 import { TYPEWRITER_WORDS, HERO_MESSAGES } from '../data';
 ---
@@ -20,8 +21,8 @@ import { TYPEWRITER_WORDS, HERO_MESSAGES } from '../data';
   <!-- Navbar -->
   <nav class="fixed top-0 left-0 right-0 z-50 border-b border-zinc-800/60 bg-black/70 backdrop-blur-md">
     <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-      <a href="#hero" class="flex items-center gap-2 group text-zinc-100 hover:text-brand-400 transition-colors">
-        <LogoHorizontal class="h-8 w-auto" />
+      <a href="#hero" class="flex items-center gap-2 group text-zinc-100 transition-colors">
+        <LogoHorizontal />
       </a>
       <div class="hidden md:flex items-center gap-8 font-mono text-sm">
         <a href="#services" class="text-zinc-400 hover:text-white transition-colors">Services</a>
@@ -62,6 +63,20 @@ import { TYPEWRITER_WORDS, HERO_MESSAGES } from '../data';
     <!-- Grain overlay -->
     <div class="pointer-events-none absolute inset-0 opacity-[0.035] mix-blend-overlay" aria-hidden="true" style="background-image: url(&quot;data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E&quot;); background-repeat: repeat; background-size: 200px 200px;"></div>
     <div class="max-w-4xl">
+      <!-- Top Center Hero Logo -->
+      <div class="flex flex-col items-center justify-center mb-8 select-none animate-[fade-in_1s_ease-out]">
+        <div class="relative group">
+          <!-- Subtle Glow Background -->
+          <div class="absolute -inset-1.5 rounded-full bg-gradient-to-r from-brand-500 to-signal-500 opacity-20 blur-md group-hover:opacity-40 transition duration-500"></div>
+          <!-- Logo Icon -->
+          <LogoIcon class="h-20 w-auto text-brand-400 drop-shadow-[0_0_20px_rgba(16,185,129,0.3)] relative animate-[pulse_3s_ease-in-out_infinite]" />
+        </div>
+        <!-- Logo Text -->
+        <div class="font-logo text-3xl tracking-widest text-white mt-5 leading-none">
+          <span class="font-extrabold">DOCO</span><span class="font-light text-zinc-400">BYTE</span>
+        </div>
+      </div>
+
       <p class="font-mono text-brand-400 text-sm mb-4 tracking-widest uppercase opacity-80 hero-tagline">Compile the Future</p>
       <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight text-white mb-6">
         We Build <span class="cursor-blink" id="typewriter"></span>
