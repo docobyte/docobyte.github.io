@@ -22,6 +22,19 @@ export default function PixelGrid({
 }: PixelGridProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [accentColor, setAccentColor] = useState(accent);
+  const [isDark, setIsDark] = useState(() =>
+    typeof document !== 'undefined' && document.documentElement.classList.contains('dark'),
+  );
+
+  useEffect(() => {
+    const syncTheme = () => {
+      setIsDark(document.documentElement.classList.contains('dark'));
+    };
+    syncTheme();
+    const observer = new MutationObserver(syncTheme);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    return () => observer.disconnect();
+  }, []);
 
   // Allow external code to change the accent via a custom event.
   useEffect(() => {
@@ -107,7 +120,8 @@ export default function PixelGrid({
           dot.brightness *= 0.96;
         }
 
-        const alpha = 0.12 + dot.brightness * 0.88;
+        const baseAlpha = isDark ? 0.12 : 0.04;
+        const alpha = baseAlpha + dot.brightness * (isDark ? 0.88 : 0.45);
         ctx.fillStyle = hexToRgba(accentColor, alpha);
         ctx.fillRect(dot.x - dotSize / 2, dot.y - dotSize / 2, dotSize, dotSize);
       }
@@ -156,7 +170,7 @@ export default function PixelGrid({
       canvas.removeEventListener('mouseleave', handleMouseLeave);
       cancelAnimationFrame(animationFrameId);
     };
-  }, [accentColor, dotSize, spacing, radius]);
+  }, [accentColor, dotSize, spacing, radius, isDark]);
 
   return (
     <canvas

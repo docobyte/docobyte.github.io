@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-logo: 'Exo', sans-serif;
   --font-sans: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
@@ -21,8 +23,9 @@ html {
 }
 
 body {
-  @apply bg-void text-zinc-100;
+  @apply bg-zinc-50 text-zinc-900 dark:bg-void dark:text-zinc-100;
   font-family: var(--font-sans);
+  transition: background-color 0.2s, color 0.2s;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -35,7 +38,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(--color-void); }
+::-webkit-scrollbar-track { background: #f4f4f5; }
+.dark ::-webkit-scrollbar-track { background: var(--color-void); }
 ::-webkit-scrollbar-thumb { background: var(--color-brand-600); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--color-brand-500); }
 
@@ -102,7 +106,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .terminal-output::-webkit-scrollbar { width: 6px; }
-.terminal-output::-webkit-scrollbar-thumb { background: #27272a; border-radius: 3px; }
+.terminal-output::-webkit-scrollbar-thumb { background: #d4d4d8; border-radius: 3px; }
+.dark .terminal-output::-webkit-scrollbar-thumb { background: #27272a; }
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {

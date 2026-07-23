@@ -11,9 +11,18 @@ const {
   description = 'DOCOBYTE startup landing page: software, AI agents, APIs, websites.'
 } = Astro.props;
 ---
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="utf-8" />
+  <meta name="color-scheme" content="dark light" />
+  <script is:inline>
+    (function () {
+      var stored = localStorage.getItem('docobyte-theme');
+      var dark = stored !== 'light';
+      document.documentElement.classList.toggle('dark', dark);
+      document.documentElement.style.colorScheme = dark ? 'dark' : 'light';
+    })();
+  </script>
   <link rel="icon" type="image/svg+xml" href="/logo/favicon.svg" />
   <meta name="viewport" content="width=device-width" />
   <meta name="generator" content={Astro.generator} />

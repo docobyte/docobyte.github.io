@@ -3,13 +3,13 @@ import SocialLinks from '../components/SocialLinks.astro';
 import LogoIcon from '../components/LogoIcon.astro';
 ---
 
-<footer id="contact" class="border-t border-zinc-900 bg-black/80">
+<footer id="contact" class="border-t border-zinc-200 dark:border-zinc-900 bg-zinc-50/90 dark:bg-black/80 transition-colors">
   <div class="max-w-6xl mx-auto px-4 py-12 flex flex-col items-center text-center gap-8">
-    <LogoIcon class="h-20 w-auto text-white" />
+    <LogoIcon class="h-20 w-auto text-zinc-900 dark:text-white" />
 
     <SocialLinks variant="outline" />
 
-    <div class="font-mono text-xs text-zinc-600">
+    <div class="font-mono text-xs text-zinc-500 dark:text-zinc-600">
       DOCOBYTE &copy; <span id="year"></span>
     </div>
   </div>

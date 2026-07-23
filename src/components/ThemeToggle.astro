@@ -1,0 +1,46 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<button
+  id="theme-toggle"
+  type="button"
+  class="inline-flex items-center justify-center w-9 h-9 rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-950/80 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:border-brand-500 transition-colors"
+  aria-label="Toggle light mode"
+>
+  <Icon name="lucide:sun" class="w-4 h-4 hidden dark:block" aria-hidden="true" />
+  <Icon name="lucide:moon" class="w-4 h-4 block dark:hidden" aria-hidden="true" />
+</button>
+
+<script>
+  const STORAGE_KEY = 'docobyte-theme';
+
+  function applyTheme(theme: 'light' | 'dark') {
+    const isDark = theme === 'dark';
+    document.documentElement.classList.toggle('dark', isDark);
+    document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';
+    localStorage.setItem(STORAGE_KEY, theme);
+    document.getElementById('theme-toggle')?.setAttribute(
+      'aria-label',
+      isDark ? 'Switch to light mode' : 'Switch to dark mode',
+    );
+  }
+
+  function initThemeToggle() {
+    const btn = document.getElementById('theme-toggle');
+    if (!btn || btn.dataset.bound === '1') return;
+    btn.dataset.bound = '1';
+
+    // Respect class already set by the inline head script (defaults to dark)
+    const theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+    applyTheme(theme);
+
+    btn.addEventListener('click', () => {
+      const next = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+      applyTheme(next);
+    });
+  }
+
+  initThemeToggle();
+  document.addEventListener('astro:page-load', initThemeToggle);
+</script>

@@ -7,24 +7,24 @@ import { PROJECTS } from '../data';
     <div class="flex items-center gap-3 mb-10">
       <span class="font-mono text-brand-500">$</span>
       <h2 class="text-2xl md:text-3xl font-bold tracking-tight">Products</h2>
-      <span class="flex-1 h-px bg-zinc-800 ml-4"></span>
+      <span class="flex-1 h-px bg-zinc-200 dark:bg-zinc-800 ml-4"></span>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {PROJECTS.map(project => (
         <a href={project.url || '#'} target={project.url ? '_blank' : undefined} rel={project.url ? 'noopener noreferrer' : undefined} class="block group no-underline">
-        <article class="p-6 rounded-xl border border-zinc-800 bg-zinc-950/80 glow-border group-hover:border-brand-500/50 transition-colors">
+        <article class="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950/80 glow-border group-hover:border-brand-500/50 transition-colors">
           <div class="flex items-center justify-between mb-4">
-            <div class="w-10 h-10 rounded-lg bg-brand-500/20 flex items-center justify-center text-brand-400 font-mono font-bold">
+            <div class="w-10 h-10 rounded-lg bg-brand-500/15 dark:bg-brand-500/20 flex items-center justify-center text-brand-600 dark:text-brand-400 font-mono font-bold">
               {project.id}
             </div>
             <span class="font-mono text-xs text-zinc-500">{project.status}</span>
           </div>
-          <h3 class="text-lg font-semibold mb-2 group-hover:text-brand-400 transition-colors">{project.name}</h3>
-          <p class="text-zinc-400 text-sm mb-4 leading-relaxed">{project.description}</p>
+          <h3 class="text-lg font-semibold mb-2 text-zinc-900 dark:text-zinc-100 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">{project.name}</h3>
+          <p class="text-zinc-600 dark:text-zinc-400 text-sm mb-4 leading-relaxed">{project.description}</p>
           <div class="flex flex-wrap gap-2 font-mono text-xs">
             {project.tags.map(tag => (
-              <span class="px-2 py-1 rounded bg-zinc-900 text-zinc-300">{tag}</span>
+              <span class="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300">{tag}</span>
             ))}
           </div>
         </article>

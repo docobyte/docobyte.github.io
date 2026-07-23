@@ -73,8 +73,8 @@ export default function Terminal({ accent = '#10b981' }: TerminalProps) {
   }
 
   return (
-    <div className="rounded-xl border border-zinc-800 bg-black/70 backdrop-blur-sm overflow-hidden shadow-2xl">
-      <div className="flex items-center justify-between px-4 py-3 border-b border-zinc-800 bg-zinc-900/40">
+    <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white/90 dark:bg-black/70 backdrop-blur-sm overflow-hidden shadow-xl dark:shadow-2xl transition-colors">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-100/80 dark:bg-zinc-900/40">
         <div className="flex gap-2">
           <span className="w-3 h-3 rounded-full bg-red-500/80" />
           <span className="w-3 h-3 rounded-full bg-yellow-500/80" />
@@ -86,10 +86,10 @@ export default function Terminal({ accent = '#10b981' }: TerminalProps) {
       <div className="p-4 md:p-6">
         <div
           ref={outputRef}
-          className="terminal-output font-mono text-sm h-64 overflow-y-auto mb-4 space-y-2 text-zinc-300"
+          className="terminal-output font-mono text-sm h-64 overflow-y-auto mb-4 space-y-2 text-zinc-700 dark:text-zinc-300"
         >
           {lines.map((line, idx) => (
-            <div key={idx} className={line.type === 'response' ? 'whitespace-pre-wrap' : 'text-zinc-200'}
+            <div key={idx} className={line.type === 'response' ? 'whitespace-pre-wrap' : 'text-zinc-800 dark:text-zinc-200'}
               style={line.type === 'response' ? { color: accent } : undefined}
             >
               {line.type === 'prompt' && `guest@docobyte:~$ `}
@@ -104,7 +104,7 @@ export default function Terminal({ accent = '#10b981' }: TerminalProps) {
               key={prompt}
               type="button"
               onClick={() => runCommand(prompt)}
-              className="px-3 py-1 rounded bg-zinc-900 border border-zinc-800 hover:border-brand-500 text-xs font-mono text-zinc-300 transition-colors"
+              className="px-3 py-1 rounded bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 hover:border-brand-500 text-xs font-mono text-zinc-700 dark:text-zinc-300 transition-colors"
             >
               {prompt}
             </button>
@@ -119,7 +119,7 @@ export default function Terminal({ accent = '#10b981' }: TerminalProps) {
             onChange={e => setInput(e.target.value)}
             autoComplete="off"
             spellCheck={false}
-            className="flex-1 bg-transparent border-none outline-none text-white placeholder-zinc-600"
+            className="flex-1 bg-transparent border-none outline-none text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600"
             placeholder="type a command"
           />
         </form>

@@ -12,10 +12,10 @@ const base =
   'inline-flex items-center gap-2 px-4 py-2 rounded-md font-mono text-sm font-medium transition-colors';
 
 const filled =
-  'bg-zinc-900 text-white hover:bg-zinc-800 border border-zinc-800 hover:border-brand-500';
+  'bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-white hover:bg-zinc-200 dark:hover:bg-zinc-800 border border-zinc-200 dark:border-zinc-800 hover:border-brand-500';
 
 const outline =
-  'border border-zinc-700 text-zinc-300 hover:text-white hover:border-brand-500';
+  'border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white hover:border-brand-500';
 
 const cls = variant === 'filled' ? `${base} ${filled}` : `${base} ${outline}`;
 ---
